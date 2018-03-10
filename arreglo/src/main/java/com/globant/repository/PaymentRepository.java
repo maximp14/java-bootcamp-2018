@@ -1,7 +1,8 @@
 package com.globant.repository;
 
 import com.globant.model.Payment;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PaymentRepository extends CrudRepository<Payment,Integer> {
+
+public interface PaymentRepository extends JpaRepository<Payment,Integer> {
 }

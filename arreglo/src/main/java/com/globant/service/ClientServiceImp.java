@@ -1,5 +1,6 @@
 package com.globant.service;
 
+import com.globant.dto.ClientDTO;
 import com.globant.model.Client;
 import com.globant.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public class ClientServiceImp implements ClientService{
 
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     @Autowired
     public ClientServiceImp(ClientRepository clientRepository){
@@ -21,9 +22,9 @@ public class ClientServiceImp implements ClientService{
 
     @Override
     public List<Client> getAllClients() {
-        List<Client> clients = new ArrayList<>();
-        clientRepository.findAll().forEach(clients::add);
-        return clients;
+       // List<Client> clients = new ArrayList<>();
+       /// clientRepository.findAll().forEach(clients::add);
+        return clientRepository.findAll();
     }
 
     @Override
@@ -35,6 +36,13 @@ public class ClientServiceImp implements ClientService{
     public void addClient(Client client) {
         clientRepository.save(client);
     }
+
+    // to do
+//    @Override
+//    public void addClient(ClientDTO clientDTO) {
+//        Client client = new Client(clientDTO.getName(),clientDTO.getLastName(),clientDTO.getDescription());
+//        clientRepository.save(client);
+//    }
 
     @Override
     public void updateClient(Integer id, Client client) {

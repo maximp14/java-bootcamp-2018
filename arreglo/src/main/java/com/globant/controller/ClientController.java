@@ -1,5 +1,6 @@
 package com.globant.controller;
 
+import com.globant.dto.ClientDTO;
 import com.globant.model.Client;
 import com.globant.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,14 @@ public class ClientController {
 
     @PostMapping("/client")
     public void addClient(@RequestBody Client client){
+
         clientService.addClient(client);
     }
+
+//    @PostMapping("/client")
+//    public void addClient(@RequestBody ClientDTO clientDTO){
+//        clientService.addClient(clientDTO);
+//    }
 
     @PutMapping("/client/{id}")
     public void updateClient(@PathVariable Integer id,@RequestBody Client client){

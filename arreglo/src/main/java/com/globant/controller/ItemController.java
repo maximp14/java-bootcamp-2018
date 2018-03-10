@@ -18,31 +18,29 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @RequestMapping("/order/{orderId}/items}")
-    public List<Item> getAllItems(@PathVariable Integer orderId){
+    @RequestMapping("/items")
+    public List<Item> getAllItems(@RequestParam(value = "orderId") Integer orderId){
         return itemService.getAllItems(orderId);
     }
 
-    @RequestMapping("/order/{orderId}/item/{id}")
-    public Item getItem(@PathVariable Integer id){
-        return itemService.getItem(id);
+    @RequestMapping("/item")
+    public Item getItem(@RequestParam(value = "itemId") Integer itemId){
+        return itemService.getItem(itemId);
     }
 
-    @PostMapping("/order/orderId/item")
-    public void addItem(@RequestBody Item item,@PathVariable Integer orderId){
-        item.setOrder(new Order(orderId,""));
+    @PostMapping("/item")
+    public void addItem(@RequestBody Item item){
         itemService.addItem(item);
     }
 
-    @PutMapping("/order/orderId/item/{id}")
-    public void updateItem(@RequestBody Item item,@PathVariable Integer orderId,@PathVariable Integer id){
-        item.setOrder(new Order(orderId,""));
+    @PutMapping("/item")
+    public void updateItem(@RequestBody Item item){
         itemService.updateItem(item);
     }
 
-    @DeleteMapping("/order/{orderId}/item/{id}")
-    public void deleteItem(@PathVariable Integer id){
-        itemService.deleteItem(id);
+    @DeleteMapping("/item")
+    public void deleteItem(@RequestParam(value = "itemID") Integer itemId){
+        itemService.deleteItem(itemId);
     }
 
 }

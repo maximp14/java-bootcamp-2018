@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class ItemServiceImp implements ItemService {
 
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     @Autowired
     public ItemServiceImp(ItemRepository itemRepository){
@@ -21,9 +21,9 @@ public class ItemServiceImp implements ItemService {
 
     @Override
     public List<Item> getAllItems(Integer orderId) {
-        List<Item> items = new ArrayList<>();
-        itemRepository.findByOrderId(orderId).forEach(items::add);
-        return items;
+        //List<Item> items = new ArrayList<>();
+        //itemRepository.findByOrderId(orderId).forEach(items::add);
+        return itemRepository.findAll();
     }
 
     @Override

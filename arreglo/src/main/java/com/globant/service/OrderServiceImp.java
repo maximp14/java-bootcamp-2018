@@ -14,7 +14,7 @@ import java.util.List;
 public class OrderServiceImp implements OrderService{
 
 
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
     public  OrderServiceImp(OrderRepository orderRepository){
@@ -23,9 +23,9 @@ public class OrderServiceImp implements OrderService{
 
     @Override
     public List<Order> getAllOrders(){
-        List<Order> orders = new ArrayList<>();
-        orderRepository.findAll().forEach(orders :: add);
-        return orders;
+//        List<Order> orders = new ArrayList<>();
+//        orderRepository.findAll().forEach(orders :: add);
+        return orderRepository.findAll();
     }
 
     @Override

@@ -1,9 +1,20 @@
 package com.globant.model;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+import javax.persistence.*;
+import java.util.List;
+
+
+/// for some reason loombok do not work, i'll investigate later
+//@Data
 @Entity
-@Table(name = "clients")
+@Table(name = "client")
+
 public class Client {
 
     @Id
@@ -13,11 +24,14 @@ public class Client {
     private String lastName;
     private String description;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "client-payment"), name = "PAYMENT_ID")
+    private List<Payment> payments;
+
     public Client() {
     }
 
-    public Client(Integer id, String firstName, String lastName, String description) {
-        this.id = id;
+    public Client(String firstName, String lastName, String description) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
@@ -53,5 +67,13 @@ public class Client {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 }

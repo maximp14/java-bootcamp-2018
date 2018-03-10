@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class PaymentServiceImp implements PaymentService {
 
-    private PaymentRepository paymentRepository;
+    private final PaymentRepository paymentRepository;
 
     @Autowired
     public PaymentServiceImp(PaymentRepository paymentRepository){
@@ -20,9 +20,9 @@ public class PaymentServiceImp implements PaymentService {
 
     @Override
     public List<Payment> getAllPayments() {
-        List<Payment> payments = new ArrayList<>();
-        paymentRepository.findAll().forEach(payments::add);
-        return payments;
+//        List<Payment> payments = new ArrayList<>();
+//        paymentRepository.findAll().forEach(payments::add);
+        return paymentRepository.findAll();
     }
 
     @Override
