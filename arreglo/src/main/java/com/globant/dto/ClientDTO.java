@@ -1,10 +1,5 @@
 package com.globant.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 //@Data
@@ -14,7 +9,7 @@ import java.util.List;
 public class ClientDTO {
 
     private Integer clientId;
-    private String name;
+    private String firstName;
     private String lastName;
     private String description;
     private List<Integer>paymentsId;
@@ -24,7 +19,7 @@ public class ClientDTO {
 
     public ClientDTO( String name, String lastName, String description) {
 
-        this.name = name;
+        this.firstName = name;
         this.lastName = lastName;
         this.description = description;
 
@@ -38,12 +33,12 @@ public class ClientDTO {
         this.clientId = clientId;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {

@@ -1,9 +1,5 @@
 package com.globant.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
@@ -23,9 +19,8 @@ public class Client {
     private String firstName;
     private String lastName;
     private String description;
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(foreignKey = @ForeignKey(name = "client-payment"), name = "PAYMENT_ID")
+    @JoinColumn(foreignKey = @ForeignKey(name = "client_payment"), name = "PAYMENT_ID")
     private List<Payment> payments;
 
     public Client() {

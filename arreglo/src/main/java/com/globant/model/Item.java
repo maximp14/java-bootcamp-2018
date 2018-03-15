@@ -1,8 +1,6 @@
 package com.globant.model;
 
 
-import lombok.Builder;
-import lombok.Data;
 
 import javax.persistence.*;
 //for some reason loombok do not work, i'll investigate later
@@ -15,12 +13,12 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "PEDIDO_ID")
+    private Order order;
 
-
-    public Item(Integer id, String name) {
-        this.id = id;
+    public Item(String name) {
         this.name = name;
-       // this.order = new Order(orderId,"");
     }
 
     public Item() {

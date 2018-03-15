@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 public class ClientController {
 
-    private ClientService clientService;
+    private final ClientService clientService;
 
     @Autowired
     public ClientController(ClientService clientService){
@@ -23,30 +23,30 @@ public class ClientController {
         return clientService.getAllClients();
     }
 
-    @RequestMapping("/client/{id}")
-    public Client getClient(@PathVariable Integer id){
-        return clientService.getClient(id);
-    }
-
-    @PostMapping("/client")
-    public void addClient(@RequestBody Client client){
-
-        clientService.addClient(client);
+    @RequestMapping("/client/{clientId}")
+    public Client getClient(@PathVariable("clientId") Integer clientId){
+        return clientService.getClient(clientId);
     }
 
 //    @PostMapping("/client")
-//    public void addClient(@RequestBody ClientDTO clientDTO){
-//        clientService.addClient(clientDTO);
+//    public void addClient(@RequestBody Client client){
+//
+//        clientService.addClient(client);
 //    }
 
-    @PutMapping("/client/{id}")
-    public void updateClient(@PathVariable Integer id,@RequestBody Client client){
-        clientService.updateClient(id,client);
+    @PostMapping("/client")
+    public void addClient(@RequestBody ClientDTO clientDTO){
+        clientService.addClient(clientDTO);
     }
 
-    @DeleteMapping("/client/{id}")
-    public void deleteClient(@PathVariable Integer id){
-        clientService.deleteClient(id);
+    @PutMapping("/client/{clientId}")
+    public void updateClient(@PathVariable("clientId") Integer clientId,@RequestBody ClientDTO clientDTO){
+        clientService.updateClient(clientId,clientDTO);
+    }
+
+    @DeleteMapping("/client/{clientId}")
+    public void deleteClient(@PathVariable("clientId") Integer clientId){
+        clientService.deleteClient(clientId);
     }
 
 }

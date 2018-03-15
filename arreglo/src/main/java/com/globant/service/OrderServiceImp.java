@@ -1,5 +1,6 @@
 package com.globant.service;
 
+import com.globant.dto.OrderDTO;
 import com.globant.model.Order;
 
 import com.globant.repository.OrderRepository;
@@ -29,23 +30,26 @@ public class OrderServiceImp implements OrderService{
     }
 
     @Override
-    public Order getOrder(Integer id){
-        return orderRepository.findOne(id);
+    public Order getOrder(Integer orderId){
+        return orderRepository.findOne(orderId);
     }
 
     @Override
-    public void addOrder(Order order){
-         orderRepository.save(order);
-    }
-
-    @Override
-    public void updateOrder(Order order, Integer id){
+    public void addOrder(OrderDTO orderDTO){
+        Order order = new Order(orderDTO.getName());
         orderRepository.save(order);
     }
 
     @Override
-    public void deleteOrder(Integer id){
-        orderRepository.delete(id);
+    public void updateOrder(Integer orderId, OrderDTO orderDTO){
+        Order order = orderRepository.findOne(orderId);
+        order.setName(orderDTO.getName());
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void deleteOrder(Integer orderId){
+        orderRepository.delete(orderId);
     }
 
 }

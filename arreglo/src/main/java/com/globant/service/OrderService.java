@@ -1,5 +1,6 @@
 package com.globant.service;
 
+import com.globant.dto.OrderDTO;
 import com.globant.model.Order;
 
 import java.util.List;
@@ -8,13 +9,13 @@ public interface OrderService {
 
     List<Order> getAllOrders();
 
-    Order getOrder(Integer id);
+    Order getOrder(Integer orderId);
 
-    void addOrder(Order order);
+    void addOrder(OrderDTO orderDTO);
 
-    void updateOrder(Order order, Integer id);
+    void updateOrder(Integer orderId, OrderDTO orderDTO);
 
-    void deleteOrder(Integer id);
+    void deleteOrder(Integer orderId);
 
 
 }

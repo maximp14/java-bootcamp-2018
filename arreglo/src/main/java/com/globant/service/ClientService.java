@@ -9,16 +9,18 @@ public interface ClientService {
 
     List<Client> getAllClients();
 
-    Client getClient(Integer id);
+    Client getClient(Integer clientId);
 
-    void addClient(Client client);
+//    void addClient(Client client);
 
-    /// to do
-//    void addClient(ClientDTO client);
 
-    void updateClient(Integer id, Client client);
+    void addClient(ClientDTO clientDTO);
 
-    void deleteClient(Integer id);
+//    void updateClient(Integer id, Client client);
+
+    void updateClient(Integer clientId, ClientDTO clientDTO);
+
+    void deleteClient(Integer clientId);
 
 
 }

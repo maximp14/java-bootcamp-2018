@@ -1,5 +1,6 @@
 package com.globant.controller;
 
+import com.globant.dto.OrderDTO;
 import com.globant.model.Order;
 
 import com.globant.service.OrderService;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 public class OrderController {
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     @Autowired
     public OrderController(OrderService orderService){
@@ -26,24 +27,24 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    @RequestMapping("/order/{id}")
-    public Order getOrder(@PathVariable Integer id){
-        return orderService.getOrder(id);
+    @RequestMapping("/order/{orderId}")
+    public Order getOrder(@PathVariable("orderId") Integer orderId){
+        return orderService.getOrder(orderId);
     }
 
     @PostMapping("/order")
-    public void addOrder(@RequestBody Order order){
-        orderService.addOrder(order);
+    public void addOrder(@RequestBody OrderDTO orderDTO){
+        orderService.addOrder(orderDTO);
     }
 
-    @PutMapping("/order/{id}")
-    public void updateOrder(@RequestBody Order order,@PathVariable Integer id){
-        orderService.updateOrder(order,id);
+    @PutMapping("/order/{orderId}")
+    public void updateOrder(@PathVariable("orderId") Integer orderId, @RequestBody OrderDTO orderDTO){
+        orderService.updateOrder(orderId, orderDTO);
     }
 
-    @DeleteMapping("/order/{id}")
-    public void deleteOrder(@PathVariable Integer id){
-        orderService.deleteOrder(id);
+    @DeleteMapping("/order/{orderId}")
+    public void deleteOrder(@PathVariable("orderId") Integer orderId){
+        orderService.deleteOrder(orderId);
     }
 
 

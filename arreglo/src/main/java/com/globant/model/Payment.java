@@ -1,7 +1,6 @@
 package com.globant.model;
 
-import lombok.Builder;
-import lombok.Data;
+
 
 import javax.persistence.*;
 //for some reason loombok do not work, i'll investigate later
@@ -21,8 +20,7 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Integer id, float amount) {
-        this.id = id;
+    public Payment(float amount) {
         this.amount = amount;
     }
 

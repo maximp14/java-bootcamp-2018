@@ -1,5 +1,6 @@
 package com.globant.service;
 
+import com.globant.dto.PaymentDTO;
 import com.globant.model.Payment;
 
 
@@ -9,11 +10,11 @@ public interface PaymentService {
 
     List<Payment> getAllPayments();
 
-    Payment getPayment(Integer id);
+    Payment getPayment(Integer paymentId);
 
-    void addPayment(Payment payment);
+    void addPayment(PaymentDTO paymentDTO);
 
-    void updatePayment(Integer id, Payment payment);
+    void updatePayment(Integer paymentId, PaymentDTO paymentDTO);
 
-    void deletePayment(Integer id);
+    void deletePayment(Integer paymentId);
 }

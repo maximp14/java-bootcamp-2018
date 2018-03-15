@@ -1,5 +1,6 @@
 package com.globant.controller;
 
+import com.globant.dto.PaymentDTO;
 import com.globant.model.Payment;
 import com.globant.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.util.List;
 @RestController
 public class PaymentController {
 
-    private PaymentService paymentService;
+    private final PaymentService paymentService;
 
     @Autowired
     public PaymentController(PaymentService paymentService){
@@ -22,23 +23,23 @@ public class PaymentController {
         return paymentService.getAllPayments();
     }
 
-    @RequestMapping("/payment/{id}")
-    public Payment getPayment(@PathVariable Integer id){
-        return paymentService.getPayment(id);
+    @RequestMapping("/payment/{paymentId}")
+    public Payment getPayment(@PathVariable("paymentId") Integer paymentId){
+        return paymentService.getPayment(paymentId);
     }
 
     @PostMapping("/payment")
-    public void addPayment(@RequestBody Payment payment){
-        paymentService.addPayment(payment);
+    public void addPayment(@RequestBody PaymentDTO paymentDTO){
+        paymentService.addPayment(paymentDTO);
     }
 
-    @PutMapping("/payment/{id}")
-    public void updatePayment(@PathVariable Integer id, @RequestBody Payment payment){
-        paymentService.updatePayment(id, payment);
+    @PutMapping("/payment/{paymentId}")
+    public void updatePayment(@PathVariable("paymentId") Integer paymentId, @RequestBody PaymentDTO paymentDTO){
+        paymentService.updatePayment(paymentId, paymentDTO);
     }
 
-    @DeleteMapping("/payment/{id}")
-    public void deletePayment(@PathVariable Integer id){
-        paymentService.deletePayment(id);
+    @DeleteMapping("/payment/{paymentId}")
+    public void deletePayment(@PathVariable("paymentId") Integer paymentId){
+        paymentService.deletePayment(paymentId);
     }
 }

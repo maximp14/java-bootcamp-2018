@@ -1,5 +1,6 @@
 package com.globant.service;
 
+import com.globant.dto.PaymentDTO;
 import com.globant.model.Payment;
 import com.globant.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +27,25 @@ public class PaymentServiceImp implements PaymentService {
     }
 
     @Override
-    public Payment getPayment(Integer id) {
-        return paymentRepository.findOne(id);
+    public Payment getPayment(Integer paymentId) {
+        return paymentRepository.findOne(paymentId);
     }
 
     @Override
-    public void addPayment(Payment payment) {
+    public void addPayment(PaymentDTO paymentDTO) {
+        Payment payment = new Payment(paymentDTO.getAmaount());
         paymentRepository.save(payment);
     }
 
     @Override
-    public void updatePayment(Integer id, Payment payment) {
+    public void updatePayment(Integer paymentId, PaymentDTO paymentDTO) {
+        Payment payment = paymentRepository.findOne(paymentId);
+        payment.setAmount(paymentDTO.getAmaount());
         paymentRepository.save(payment);
     }
 
     @Override
-    public void deletePayment(Integer id) {
-        paymentRepository.delete(id);
+    public void deletePayment(Integer paymentId) {
+        paymentRepository.delete(paymentId);
     }
 }

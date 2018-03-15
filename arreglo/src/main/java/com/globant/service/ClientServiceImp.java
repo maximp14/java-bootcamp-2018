@@ -6,7 +6,6 @@ import com.globant.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,29 +27,36 @@ public class ClientServiceImp implements ClientService{
     }
 
     @Override
-    public Client getClient(Integer id) {
-        return clientRepository.findOne(id);
+    public Client getClient(Integer clientId) {
+        return clientRepository.findOne(clientId);
     }
 
-    @Override
-    public void addClient(Client client) {
-        clientRepository.save(client);
-    }
-
-    // to do
 //    @Override
-//    public void addClient(ClientDTO clientDTO) {
-//        Client client = new Client(clientDTO.getName(),clientDTO.getLastName(),clientDTO.getDescription());
+//    public void addClient(Client client) {
 //        clientRepository.save(client);
 //    }
 
+    // is this ok?
     @Override
-    public void updateClient(Integer id, Client client) {
+    public void addClient(ClientDTO clientDTO) {
+        Client client = new Client(clientDTO.getFirstName(),clientDTO.getLastName(),clientDTO.getDescription());
         clientRepository.save(client);
     }
 
     @Override
-    public void deleteClient(Integer id) {
-        clientRepository.delete(id);
+    public void updateClient(Integer clientId, ClientDTO clientDTO) {
+
+        Client client = clientRepository.findOne(clientId);
+        client.setFirstName(clientDTO.getFirstName());
+        client.setLastName(clientDTO.getLastName());
+        client.setDescription(clientDTO.getDescription());
+        
+
+        clientRepository.save(client);
+    }
+
+    @Override
+    public void deleteClient(Integer clientId) {
+        clientRepository.delete(clientId);
     }
 }

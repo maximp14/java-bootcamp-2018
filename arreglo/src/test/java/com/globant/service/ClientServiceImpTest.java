@@ -1,5 +1,6 @@
 package com.globant.service;
 
+import com.globant.dto.ClientDTO;
 import com.globant.model.Client;
 import com.globant.repository.ClientRepository;
 import org.junit.Before;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -23,7 +25,7 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 @RunWith(MockitoJUnitRunner.class)
 public class ClientServiceImpTest {
 
-    private Client client;
+    private ClientDTO clientDTO;
 
     @Mock
     private ClientRepository clientRepository;
@@ -35,7 +37,7 @@ public class ClientServiceImpTest {
     @Before
     public void setUp(){
         initMocks(ClientServiceImpTest.class);
-        client = new Client("Maxi","Pavolini","Cansado");
+        clientDTO = new ClientDTO("Maxi","Pavolini","Cansado");
     }
 
 
@@ -43,6 +45,7 @@ public class ClientServiceImpTest {
     public void listAllClientsTest(){
 
         /// not sure about this---------------------------
+        Client client = new Client(clientDTO.getFirstName(),clientDTO.getLastName(),clientDTO.getDescription());
         List<Client> clients = new ArrayList<>();
         clients.add(client);
         when(clientRepository.findAll()).thenReturn(clients);
@@ -52,6 +55,7 @@ public class ClientServiceImpTest {
 
     @Test
     public void givenIdReturnClientTest(){
+        Client client = new Client(clientDTO.getFirstName(),clientDTO.getLastName(),clientDTO.getDescription());
         when(clientRepository.findOne(anyInt())).thenReturn(client);
         Client c = clientServiceImp.getClient(1);
         assertEquals(client,c);
@@ -73,10 +77,13 @@ public class ClientServiceImpTest {
 
     @Test
     public void shouldCreateClientTest(){
-        clientServiceImp.addClient(client);
-        assertEquals("Maxi",client.getFirstName());
-        Mockito.verify(clientRepository, times(1)).save(client);
+        Client client = new Client(clientDTO.getFirstName(),clientDTO.getLastName(),clientDTO.getDescription());
+        when(clientRepository.save(any(Client.class))).thenReturn(client);
+        clientServiceImp.addClient(clientDTO);
+//        assertEquals("Maxi",clientDTO.getFirstName());
+        Mockito.verify(clientRepository, times(1)).save(any(Client.class));
     }
+
 
 
 

@@ -13,16 +13,15 @@ public class PaymentDTO {
 
     private Integer paymentId;
     private float amaount;
-//    private Integer clientId;
-//    private Integer orderId;
-
+    private Integer orderId;
 
     public PaymentDTO() {
     }
 
-    public PaymentDTO(Integer paymentId, float amaount) {
+    public PaymentDTO(Integer paymentId, float amaount, Integer orderId) {
         this.paymentId = paymentId;
         this.amaount = amaount;
+        this.orderId = orderId;
     }
 
     public Integer getPaymentId() {
@@ -39,5 +38,13 @@ public class PaymentDTO {
 
     public void setAmaount(float amaount) {
         this.amaount = amaount;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }
